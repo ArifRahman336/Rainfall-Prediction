@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rainfall Prediction Result</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto&display=swap');
+
+  body {
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2c3e50;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 50px 40px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow:
+      0 12px 20px rgba(0, 0, 0, 0.12),
+      0 6px 6px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 25px 40px rgba(0, 0, 0, 0.2),
+      0 10px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    color: #34495e;
+  }
+
+  .result {
+    font-size: 1.3rem;
+    margin-bottom: 45px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    color: #34495e;
+    font-weight: 500;
+  }
+
+  .result strong {
+    color: #0077cc;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .back-btn {
+    background-color: #0077cc;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 14px 38px;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px rgba(0, 119, 204, 0.35);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+  }
+
+  .back-btn:hover,
+  .back-btn:focus {
+    background-color: #005fa3;
+    box-shadow: 0 10px 25px rgba(0, 95, 163, 0.5);
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 40px 25px;
+      max-width: 320px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .result {
+      font-size: 1.1rem;
+      margin-bottom: 35px;
+    }
+
+    .back-btn {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-height: 600px) {
+    body {
+      align-items: flex-start;
+      padding-top: 30px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="card" role="main" aria-label="Rainfall prediction result card">
+    <h1>Prediction Result</h1>
+    <div class="result" aria-live="polite">
+      Will it rain tomorrow? <br /><br />
+      <strong>{{ result }}</strong>
+    </div>
+    <a href="/" class="back-btn" role="button" aria-label="Go back to prediction form">Go Back</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainfall Prediction</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #2c3e50;
+    }
+
+    .container {
+      background-color: rgba(255 255 255 / 0.95);
+      padding: 40px 50px;
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.07);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 35px;
+      text-align: center;
+      color: #34495e;
+      letter-spacing: 0.04em;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #34495e;
+      margin-top: 20px;
+      user-select: none;
+    }
+
+    form input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 2px solid #ccd6f6;
+      border-radius: 10px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      color: #34495e;
+    }
+
+    form input[type="text"]:focus {
+      border-color: #0077cc;
+      box-shadow: 0 0 8px rgba(0, 119, 204, 0.4);
+      outline: none;
+    }
+
+    input[type="submit"] {
+      margin-top: 35px;
+      width: 100%;
+      background-color: #0077cc;
+      color: white;
+      padding: 14px 0;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 119, 204, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    input[type="submit"]:hover,
+    input[type="submit"]:focus {
+      background-color: #005fa3;
+      box-shadow: 0 12px 30px rgba(0, 95, 163, 0.55);
+      outline: none;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 18px 25px;
+      background: #e0f0ff;
+      border-left: 6px solid #0077cc;
+      color: #004a99;
+      font-weight: 600;
+      font-size: 1.15rem;
+      border-radius: 10px;
+      text-align: center;
+      user-select: text;
+      word-wrap: break-word;
+      box-shadow: inset 0 0 8px #d4e9ff;
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding: 30px 25px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 28px;
+      }
+
+      input[type="submit"] {
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Rainfall prediction form">
+    <h2>Rainfall Prediction</h2>
+    <form action="/predict" method="post" novalidate>
+      <label for="temp">Temperature (°F):</label>
+      <input type="text" id="temp" name="Temperature" required pattern="^[-+]?[0-9]*\.?[0-9]+$" title="Please enter a valid number" />
+
+      <label for="humidity">Humidity (%):</label>
+      <input type="text" id="humidity" name="Humidity" required pattern="^[-+]?[0-9]*\.?[0-9]+$" title="Please enter a valid number" />
+
+      <label for="wind">Wind Speed (km/h):</label>
+      <input type="text" id="wind" name="WindSpeed" required pattern="^[-+]?[0-9]*\.?[0-9]+$" title="Please enter a valid number" />
+
+      <label for="precip">Precipitation (mm):</label>
+      <input type="text" id="precip" name="Precipitation" required pattern="^[-+]?[0-9]*\.?[0-9]+$" title="Please enter a valid number" />
+
+      <label for="cloud">Cloud Cover (%):</label>
+      <input type="text" id="cloud" name="CloudCover" required pattern="^[-+]?[0-9]*\.?[0-9]+$" title="Please enter a valid number" />
+
+      <label for="pressure">Pressure (hPa):</label>
+      <input type="text" id="pressure" name="Pressure" required pattern="^[-+]?[0-9]*\.?[0-9]+$" title="Please enter a valid number" />
+
+      <input type="submit" value="Predict" />
+    </form>
+
+    {% if prediction_text %}
+    <div class="result" role="alert" aria-live="polite">
+      {{ prediction_text }}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
